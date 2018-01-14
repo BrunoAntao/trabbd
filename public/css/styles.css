@@ -1,0 +1,419 @@
+html{
+
+  width:100%;
+  height:100%;
+
+}
+
+body{
+
+  width:100%;
+  height:100%;
+  margin: 0;
+  font-family: Roboto;
+
+}
+
+.wrapper{
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+}
+
+.navbar{
+
+  background-color: #0f0f0f;
+  width: 20%;
+
+}
+
+img{
+
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+
+}
+
+form img{
+
+  display: block;
+  margin: 20px auto;
+  width: 90px;
+  height: 90px;
+
+}
+
+.navbar ul{
+
+  margin: 20px auto;
+  width: 100%;
+  text-align: center;
+  list-style: none;
+  padding: 0;
+
+}
+
+.navbar li{
+
+  padding: 10px;
+
+
+}
+
+.navbar li a{
+
+  font-weight: 300;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+
+}
+
+.navbar li:hover{
+
+  background-color: #000000;
+  cursor: pointer;
+
+}
+
+.navbar li:hover a{
+
+  color: #1db954;
+
+}
+
+
+#footer{
+
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  left: 5%;
+
+}
+
+.social{
+
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+
+}
+
+.social:hover{
+
+  color: #1db954;
+}
+
+.main-content{
+
+  background: url(../assets/city.png) center no-repeat;
+  width: 80%;
+  display: flex;
+
+}
+
+form{
+
+  margin: auto;
+  padding: 120px 60px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  background-color: #0f0f0f;
+
+}
+
+form input{
+
+  display: block;
+  margin-bottom: 10px;
+  color: #757474;
+  font-size: 15px;
+  text-indent: 15px;
+  border: 0;
+  background-color: #232323;
+  padding: 15px 35px;
+
+}
+
+form p{
+
+  padding: 0;
+  margin: 0;
+  color: white;
+
+}
+
+#submit{
+
+  background-color: #1db954;
+  text-indent: 0px;
+  color: white;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 15px 85px;
+  margin-top: 40px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+
+}
+
+#submit:hover{
+
+  background-color: #14823b;
+
+}
+
+.fas{
+
+  position: relative;
+  color: #c6c6c6;
+  width: 0px;
+  font-size: 25px;
+  top: -46px;
+  left: 10px;
+
+}
+
+
+form span a{
+
+  color: #c6c6c6;
+  cursor: pointer;
+  text-decoration: none;
+
+}
+
+
+.switch {
+
+  position: relative;
+  margin-top: 10px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+
+}
+
+.switch input {
+
+  display:none;
+
+}
+
+.slider {
+
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #232323;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+}
+
+.slider:before {
+
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #c6c6c6;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+}
+
+input:checked + .slider {
+
+  background-color: #1db954;
+
+}
+
+input:focus + .slider {
+
+  box-shadow: 0 0 1px #2196F3;
+
+}
+
+input:checked + .slider:before {
+
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+
+}
+
+.slider.round {
+
+  border-radius: 34px;
+
+}
+
+.slider.round:before {
+
+  border-radius: 50%;
+
+}
+
+#playlist_display {
+
+  width: 95%;
+  margin: 10px auto;
+  background-color: #0f0f0f;
+  overflow: auto;
+}
+
+#playlist_display h2{
+
+  margin-left: 40px;
+  margin-top: 40px;
+  font-weight: 400;
+  color: white;
+}
+
+#playlist_display ul{
+
+  list-style: none;
+  margin-top: 20px;
+}
+
+#playlist_display li{
+
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 300;
+  width: 70%;
+
+}
+
+#playlist_display li div{
+
+  background-color: #232323;
+  padding: 10px;
+
+}
+
+#playlist_display li div.music-form{
+
+  background-color: #0f0f0f;
+  padding: 10px;
+
+}
+
+#playlistName {
+
+  color: white;
+  margin-left: 40px;
+  color: #757474;
+  font-size: 15px;
+  border: 0;
+  background-color: #232323;
+  padding: 15px 35px;
+
+}
+
+#playlistButton {
+
+  background-color: #1db954;
+  margin-left: 10px;
+  text-indent: 0px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 15px 25px;
+  border: 0;
+
+}
+
+#playlistButton:hover {
+
+  background-color: #14823b;
+}
+
+#getButton {
+
+  background-color: #1db954;
+  margin-left: 10px;
+  text-indent: 0px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 15px 25px;
+  border: 0;
+  display: block;
+
+}
+
+.musicButton {
+
+  background-color: #1db954;
+  color: white;
+  margin-top: -6px;
+  font-size: 15px;
+  cursor: pointer;
+  float: right;
+  padding: 8px;
+  border: 0;
+}
+
+.musicButton:after {
+
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.music-form {
+
+  margin-top: 30px;
+  margin-left: 40px;
+
+}
+
+.music-form input{
+
+  color: #757474;
+  font-size: 15px;
+  text-indent: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 0;
+  background-color: #232323;
+
+}
+.music-form input.add-music{
+
+  text-align: center;
+  text-indent: 0px;
+  background-color: #1db954;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+
+}
+
+#playlist_display li.music {
+
+  margin-bottom: 10px;
+
+}
+#playlist_display li.music li.music-info {
+
+  margin-bottom: 5px;
+  background-color: #232323;
+  border-left: 5px solid #1db954;
+  padding: 10px 5px;
+
+}
