@@ -417,3 +417,80 @@ input:checked + .slider:before {
   padding: 10px 5px;
 
 }
+
+#about {
+
+  width: 95%;
+  margin: 10px auto;
+  background-color: #0f0f0f;
+  overflow: auto;
+
+}
+
+#about h2 {
+
+  color: white;
+  margin-left: 40px;
+  margin-top: 40px;
+  font-weight: 400;
+
+}
+
+#about article {
+
+  color: white;
+  margin: 40px 40px;
+  font-weight: 300;
+
+}
+
+#profile {
+
+  width: 40%;
+  margin: 80px auto;
+  background-color: #0f0f0f;
+
+}
+
+#profile h2{
+
+  color: white;
+  margin-left: 20px;
+  font-weight: 400;
+}
+
+#profile li{
+
+  margin-bottom: 20px;
+  margin-left: 10px;
+  width: 80%;
+  color: white;
+  background-color: #232323;
+  border-left: 5px solid #1db954;
+  padding: 10px 5px;
+
+}
+
+#profile ul {
+
+
+  list-style: none;
+
+}
+
+#home {
+
+  width: 80%;
+  margin: 10px auto;
+  background-color: #0f0f0f;
+  overflow: auto;
+
+}
+
+#home h1{
+
+  color: white;
+  margin-top: 40px;
+  margin-left: 40px;
+  font-weight: 300;
+}

@@ -13,7 +13,7 @@
 
     <div class="wrapper">
         <navigation v-on:login="login($event)" v-bind:logged="logged"></navigation>
-        <main-content v-bind:showMusics="showMusics" v-bind:playlists="playlists" v-on:login="login($event)" v-bind:premium="premium" v-bind:logged="logged" v-bind:email="email" v-bind:password="password" v-bind:username="username"></main-content>
+        <main-content v-bind:monthly="monthly" v-bind:number="number" v-bind:showMusics="showMusics" v-bind:playlists="playlists" v-on:login="login($event)" v-bind:premium="premium" v-bind:logged="logged" v-bind:email="email" v-bind:password="password" v-bind:username="username"></main-content>
     </div>
 
     <script src="../scripts/login.js"></script>

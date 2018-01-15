@@ -1,21 +1,51 @@
 
 let About = {
 
-  template: '<p>This is About</p>'
+  template: `<div id="about">
+                <h2>About Us</h2>
+                <article>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem dolor sed viverra ipsum nunc. Posuere lorem ipsum dolor sit. At tellus at urna condimentum mattis. Rhoncus aenean vel elit scelerisque mauris pellentesque. Mi eget mauris pharetra et ultrices neque. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Tincidunt praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Odio facilisis mauris sit amet. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Nec dui nunc mattis enim ut tellus elementum sagittis vitae. Amet risus nullam eget felis eget. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Non enim praesent elementum facilisis leo vel fringilla est ullamcorper. Ridiculus mus mauris vitae ultricies leo. Nullam eget felis eget nunc lobortis. Id consectetur purus ut faucibus.
+
+                Adipiscing elit pellentesque habitant morbi tristique senectus et netus. At consectetur lorem donec massa sapien faucibus. Amet purus gravida quis blandit turpis cursus. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Tempus egestas sed sed risus pretium quam vulputate. Enim nec dui nunc mattis enim ut tellus elementum. Pulvinar mattis nunc sed blandit libero volutpat sed. Urna duis convallis convallis tellus id interdum velit laoreet. Senectus et netus et malesuada fames ac turpis egestas. At auctor urna nunc id cursus metus aliquam. Facilisi etiam dignissim diam quis enim lobortis.
+
+                Quam pellentesque nec nam aliquam sem et tortor consequat id. Ultrices in iaculis nunc sed augue lacus viverra vitae. Ut diam quam nulla porttitor massa id neque aliquam vestibulum. Et egestas quis ipsum suspendisse. Duis tristique sollicitudin nibh sit amet commodo nulla. Nulla at volutpat diam ut. Est velit egestas dui id ornare arcu odio. Porta nibh venenatis cras sed felis eget velit. Tellus orci ac auctor augue. Magna fringilla urna porttitor rhoncus dolor purus non enim praesent. Faucibus pulvinar elementum integer enim neque. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Faucibus in ornare quam viverra orci sagittis eu volutpat odio. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt.
+                </article>
+             </div>`
 }
 
 let Home = {
 
-  template: '<p>This is Home</p>'
+  template: `<div id="home">
+                  <h1>Welcome to No Beat!</h1>
+             </div>`
 }
 
 let Profile = {
 
-  template: '<p>This is Profile</p>',
+  props: ['email', 'username', 'monthly', 'number'],
 
-  methods: {
+  template: `<div id="profile">
+                <h2>Profile</h2>
+                <ul>
+                  <li>Email: {{email}}</li>
+                  <li>Username: {{username}}</li>
+                  <li>Monthly Payment: {{monthly}} €</li>
+                  <li>Number of Playlists: {{number}}</li>
+                </ul>
+            </div>`,
 
+  mounted: function() {
 
+    this.$http.get('/profile', {params: {email: localStorage.getItem('email')}}).then( response => {
+
+        let body = response.body.data;
+
+        this.username = body.username;
+        this.email = body.email;
+        this.monthly = body.monthly_payment;
+        this.number = body.playlist_number;
+
+    })
   }
 }
 
@@ -40,7 +70,7 @@ let Playlists = {
         this.$http.get('/musics', { params: { name: el, email: localStorage.getItem('email') } }).then(response => {
 
           playlist.push(response.body);
-          
+
           playlist.forEach(function (list, i) {
 
             list.id = i;
@@ -157,7 +187,7 @@ let Navbar = {
                   <li v-if="!logged"><router-link to="/login">Login</router-link></li>
                   <li v-if="!logged"><router-link to="/register">Register</router-link></li>
                   <li><router-link to="/about">About Us</router-link></li>
-                  <li v-if="logged" v-on:click="getProfile()"><router-link to="/profile">Profile</router-link></li>
+                  <li v-if="logged"><router-link to="/profile">Profile</router-link></li>
                   <li v-if="logged"><router-link to="/playlists">Playlists</router-link></li>
                   <li v-if="logged" v-on:click="logOut()"><router-link to="/home">Log Out</router-link></li>
                 </ul>
@@ -174,17 +204,8 @@ let Navbar = {
 
       this.$emit('login', false)
 
-    },
-
-    getProfile: function () {
-
-      this.$http.get('/profile', { params: { email: localStorage.getItem('email') } }).then(response => {
-
-        console.log(response.body);
-
-      }).catch((err) => { console.log(err); });
-
     }
+
   }
 }
 
@@ -314,6 +335,10 @@ let app = new Vue({
     password: '',
 
     username: '',
+
+    number: 0,
+
+    monthly: 0,
 
     premium: false,
 

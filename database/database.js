@@ -55,11 +55,27 @@ module.exports = {
 
   getUser: function (email, callback) {
 
-    client.query('Select * from userpl where email = $1', [email]).then( result => {
+    client.query('Select username, email, user_id from userpl where email = $1', [email]).then( result => {
 
-        callback(result.rows[0]);
+      let user = {username: result.rows[0].username , email: result.rows[0].email, playlist_number: 'Premium' , monthly_payment: 0}
 
-    });
+      let id  = result.rows[0].user_id;
+
+      client.query('Select playlist_number from casual where user_id = $1', [id] ).then( result => {
+
+        if(result.rows[0] !== undefined) user.playlist_number = result.rows[0].playlist_number;
+
+        client.query('Select monthly_payment from premium where user_id = $1', [id] ).then( result => {
+
+          if(result.rows[0] !== undefined) user.monthly_payment = result.rows[0].monthly_payment;
+
+          callback(user);
+
+      }).catch( (err) => {console.log(err); });
+
+    }).catch( (err) => {console.log(err); });
+
+    }).catch( (err) => {console.log(err); });
 
   },
 
