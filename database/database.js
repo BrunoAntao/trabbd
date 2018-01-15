@@ -1,7 +1,7 @@
 const pg = require('pg');
 const bcrypt = require('bcryptjs');
 
-let client = new pg.Client("postgres://postgres:admin@localhost:5432/trabbd");
+let client = new pg.Client("postgres://postgres:27deagosto@localhost:5432/music");
 
 module.exports = {
 
@@ -115,7 +115,7 @@ module.exports = {
 
         let pl_id = result.rows[0].playlist_id;
 
-        client.query('Delete from musics where music_id = some (Select music_id from playlist_musics where playlist_id = $1)', [pl_id]).then( result => {
+        client.query('Delete from music where music_id = some (Select music_id from playlist_musics where playlist_id = $1)', [pl_id]).then( result => {
 
           client.query('Delete from playlist where playlist_id = $1', [pl_id]);
 
@@ -134,7 +134,7 @@ module.exports = {
 
         let user = result.rows[0];
 
-        if(user != undefined && user.playlist_number < 6){
+        if(user != undefined && user.playlist_number < 5){
 
           client.query('Update casual set playlist_number = playlist_number + 1 where user_id = $1', [id]);
 
@@ -154,7 +154,7 @@ module.exports = {
 
       let playlist_id = result.rows[0].playlist_id;
 
-      client.query('Insert into musics values($1, $2, $3, $4)', [music_id, name, style, author]);
+      client.query('Insert into music values($1, $2, $3, $4)', [music_id, name, style, author]);
 
       client.query('Insert into playlist_musics values($1, $2)', [music_id, playlist_id]);
 
@@ -164,11 +164,11 @@ module.exports = {
 
   removeMusic: function (music, email, playlist, callback) {
 
-    client.query('Select music_id from playlist_musics natural join musics where playlist_id = (Select playlist_id from user_playlist natural join playlist where user_id = (Select user_id from userpl where email = $1) and name = $2) and name = $3', [email, playlist, music]).then( result => {
+    client.query('Select music_id from playlist_musics natural join music where playlist_id = (Select playlist_id from user_playlist natural join playlist where user_id = (Select user_id from userpl where email = $1) and name = $2) and name = $3', [email, playlist, music]).then( result => {
 
       let music_id = result.rows[0].music_id;
 
-      client.query('Delete from musics where music_id = $1', [music_id]);
+      client.query('Delete from music where music_id = $1', [music_id]);
 
     }).catch( (err) => { console.log(err); });
 
@@ -176,7 +176,7 @@ module.exports = {
 
   getMusics: function (name, email, callback) {
 
-    client.query('Select * from musics where music_id = some (Select music_id from playlist_musics where playlist_id = (Select playlist_id from user_playlist natural join playlist where user_id = (Select user_id from userpl where email = $1) and name = $2))', [email, name]).then( result => {
+    client.query('Select * from music where music_id = some (Select music_id from playlist_musics where playlist_id = (Select playlist_id from user_playlist natural join playlist where user_id = (Select user_id from userpl where email = $1) and name = $2))', [email, name]).then( result => {
 
       let musics = result.rows;
 

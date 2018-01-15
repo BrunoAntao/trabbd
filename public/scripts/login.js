@@ -40,6 +40,7 @@ let Playlists = {
         this.$http.get('/musics', { params: { name: el, email: localStorage.getItem('email') } }).then(response => {
 
           playlist.push(response.body);
+          
           playlist.forEach(function (list, i) {
 
             list.id = i;
